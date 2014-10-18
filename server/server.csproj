@@ -26,7 +26,6 @@
     <TypeScriptCompile Include="src\config.ts" />
     <TypeScriptCompile Include="src\mongo\mongo.ts" />
     <TypeScriptCompile Include="src\mongo\validator\log.ts" />
-    <None Include="src\mongo\validator\warn.ts.legacy" />
     <TypeScriptCompile Include="src\routes\index.ts" />
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
