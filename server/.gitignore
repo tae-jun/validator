@@ -9,6 +9,7 @@ legacy
 *.js
 *.map
 !GruntFile.js
+!mongo_shell/**/*.js
 
 
 
