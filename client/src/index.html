@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title><%= grunt.config.get('pkg.name') %></title>
+
+    <!-- libs -->
+    <script src="static/jquery.js"></script>
+    <link rel="stylesheet" href="static/bootstrap.css" />
+    <script src="static/bootstrap.js"></script>
+
+    <!-- my -->
+    <link rel="stylesheet" href="static/<%= grunt.config.get('pkg.name') %>.css" />
+    <script src="static/<%= grunt.config.get('pkg.name') %>.js"></script>
+</head>
+<body>
+    <div class="warn-container">
+        <div class="warn alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <p>
+                <strong>경고!</strong>
+            </p>
+            <p>
+                2014년 08월 10일
+            </p>
+        </div>
+
+    </div>
+
+    <div class="log-container">
+        <div class="log alert alert-success">
+            <p>
+                <strong>정상 :)</strong>
+            </p>
+            <p>
+                2014년 08월 10일
+            </p>
+        </div>
+    </div>
+</body>
+</html>
