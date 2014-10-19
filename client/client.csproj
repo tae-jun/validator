@@ -24,9 +24,6 @@
     <Content Include="src\Scss1.css">
       <DependentUpon>Scss1.scss</DependentUpon>
     </Content>
-    <Content Include="src\Scss1.min.css">
-      <DependentUpon>Scss1.css</DependentUpon>
-    </Content>
     <Content Include="src\tsout.js" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -41,9 +38,6 @@
     <Content Include="package.json" />
     <Content Include="src\Scss1.scss" />
     <Content Include="bower.json" />
-    <Content Include="src\Scss1.css.map">
-      <DependentUpon>Scss1.css</DependentUpon>
-    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
