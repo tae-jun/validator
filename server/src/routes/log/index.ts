@@ -13,7 +13,7 @@ router
         var start = req.params['start'];
         var end = req.params['end'];
 
-        log.f
+        //log.f
     });
 
 export = router;

@@ -33,17 +33,17 @@
     <TypeScriptCompile Include="src\routes\static\index.ts" />
     <TypeScriptCompile Include="src\serial\logger.ts" />
     <TypeScriptCompile Include="test\mongo\log.spec.ts" />
-    <TypeScriptCompile Include="test\mongo\warn.spec.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="Gruntfile.js" />
+    <Content Include="GruntFile.js" />
     <Content Include="mongo_shell\dateQuery.js" />
     <Content Include="mongo_shell\dump.js" />
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Scripts\_references.js" />
     <Content Include="src\routes\route.txt" />
   </ItemGroup>
   <PropertyGroup>
