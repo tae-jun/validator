@@ -1,5 +1,5 @@
 ﻿db.log.find({
     _id: {
-        $gt: new Date('2014-10-08').toISOString()
+        $lt: new Date().toISOString()
     }
-}).limit(10);
+}).sort({_id: -1}).limit(10)

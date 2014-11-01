@@ -10,7 +10,7 @@ function ran(max) {
 
 for (var i = 0; i < logNum; i++) {
     var now = new Date();
-    now.setTime(now.getTime() - ran(7 * 1000 * 60 * 60 * 24)); // 7 days before ~ now
+    now.setTime(now.getTime() - ran(365 * 1000 * 60 * 60 * 24)); // 7 days before ~ now
 
     var isError;
     var isChecked;

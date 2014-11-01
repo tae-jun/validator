@@ -13,10 +13,7 @@ router
         var from = req.params['from'];
         var num = req.params['num'];
 
-        console.log(from + '/' + num);
-
         log.fetchLog(from, num, (logs) => {
-            console.log(logs);
             res.json(logs);
         });
     });

@@ -1,12 +1,9 @@
 ﻿module log {
     export class LogCtrl {
 
-        constructor($scope: ILogScope) {
-            $scope.data = [
-                '1 log', '2 log', '3 log'
-            ];
+        constructor($scope: ILogScope, logService: LogService) {
+            $scope.data = logService.fetch();
         }
-
     }
 
 

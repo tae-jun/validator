@@ -32,7 +32,6 @@
     <TypeScriptCompile Include="src\routes\log\index.ts" />
     <TypeScriptCompile Include="src\routes\static\index.ts" />
     <TypeScriptCompile Include="src\serial\logger.ts" />
-    <TypeScriptCompile Include="test\mongo\log.spec.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -41,7 +40,9 @@
     <Content Include="mongo_shell\dump.js" />
     <Content Include="package.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="test\mongo\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="src\routes\route.txt" />
   </ItemGroup>

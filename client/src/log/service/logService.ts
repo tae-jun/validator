@@ -6,7 +6,7 @@ module log {
     export class LogService {
 
         // log data
-        logs: any[];
+        logs: Log[];
         // last updated time
         lastUpdate: Date;
         // latest update time
@@ -29,6 +29,10 @@ module log {
             this.callbacks = [];
         }
 
+        get(): Log[] {
+            return this.logs;
+        }
+
         /**
          * Fetch log records from server.
          * You can get specific number of records.
@@ -37,9 +41,9 @@ module log {
         fetch(num?: number)
         fetch(callback?: Function)
         fetch(num: number, callback?: Function)
-        fetch(num_callback: any, _callback?: Function) {
+        fetch(num_callback: any, _callback?: Function): Log[] {
             var num: number = 10;
-            var callback: Function = Function;
+            var callback: Function = function () { };
 
             // recognize parameters
             if (typeof num_callback == 'number') {
@@ -63,10 +67,21 @@ module log {
                 if (lastUpdatedTime > this.updateDuration) {
                     // It is fetching
                     this.isFetching = true;
+
+                    // set from ISO string
+                    var from: string;
+                    if (this.logs.length == 0)
+                        from = new Date().toISOString();
+                    else
+                        from = this.logs[this.logs.length - 1]._id;
                     // request to server
-                    this.$http.get(config.httpUrl + '/' + new Date().toISOString() + '/' + num)
-                        .success((data: any[]) => {
-                            this.logs.concat(data);
+                    this.$http.get(config.httpUrl + '/' + from + '/' + num)
+                        .success((data: ILog[]) => {
+                            data.forEach((v) => {
+                                var log = new Log(v._id);
+                                $.extend(log, v);
+                                this.logs.push(log);
+                            });
 
                             while (this.callbacks.length)
                                 this.callbacks.pop()(this.logs);
@@ -89,6 +104,26 @@ module log {
                         this.callbacks.pop()(this.logs);
                 }
             }
+
+            return this.logs;
         }
+    }
+
+    export class Log implements ILog{
+        _id: string;
+        isError: boolean;
+        isChecked: boolean;
+
+        date: Date;
+
+        constructor(ISOstring: string) {
+            this.date = new Date(ISOstring);
+        }
+    }
+
+    export interface ILog {
+        _id?: string;
+        isError?: boolean;
+        isChecked?: boolean;
     }
 } 

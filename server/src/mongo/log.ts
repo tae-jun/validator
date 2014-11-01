@@ -9,7 +9,7 @@ var log: mongodb.Collection;
 var callbacks: Function[] = [];
 var isConnected: boolean = false;
 
-export class Log implements IRecord {
+export class Log implements ILog {
     _id: string;        // ISO
     state: string;
     isError: boolean;    // if true, error
@@ -20,15 +20,17 @@ export class Log implements IRecord {
     }
 }
 
-export interface IRecord {
-    isError: boolean;        // if true, error
-    state?: string;         // addtional state description
+export interface ILog {
+    _id: string;            //ISO date string
+    isError?: boolean;      // if true, error
+    isChecked?: boolean;
+    state?: string;
 }
 
 /**
  * Insert one record into log collection
  */
-export function insert(data: IRecord, callback?: (result: any) => void) {
+export function insert(data: ILog, callback?: (result: any) => void) {
     if (data.state == undefined)
         data.state = 'state undefined';
 
@@ -51,22 +53,10 @@ export function insert(data: IRecord, callback?: (result: any) => void) {
  * Parameter from is ISO date string
  */
 export function fetchLog(from: string, num: number, callback: (logs: Log[]) => void): void {
-    console.log(from);
-    log.find({
-        _id: {
-            $lt: from
-        }
-    },
-        (err, cursor) => {
-            if (err) return console.error(err);
-            cursor.limit(10, (err, result) => {
-                if (err) return console.error(err);
-                callback(result);
-                console.log(result);
-            });
-        });
-
-    log.find(
+    log.find({ _id: { $lt: from } }, { limit: num, sort: [['_id', 'desc']] }).toArray((err, results) => {
+        if (err) return console.error(err);
+        callback(results);
+    });
 }
 
 /**
