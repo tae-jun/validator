@@ -1,6 +1,6 @@
 ﻿import mongodb = require('mongodb');
 import extend = require('extend');
-import mongo = require('../mongo');
+import mongo = require('./mongo');
 
 var db: mongodb.Db;
 var log: mongodb.Collection;
@@ -9,7 +9,7 @@ var log: mongodb.Collection;
 var callbacks: Function[] = [];
 var isConnected: boolean = false;
 
-export class Record implements IRecord {
+export class Log implements IRecord {
     _id: string;        // ISO
     state: string;
     isError: boolean;    // if true, error
@@ -32,7 +32,7 @@ export function insert(data: IRecord, callback?: (result: any) => void) {
     if (data.state == undefined)
         data.state = 'state undefined';
 
-    var record = new Record();
+    var record = new Log();
     extend(record, data);
 
     if (record.isError)
@@ -46,10 +46,27 @@ export function insert(data: IRecord, callback?: (result: any) => void) {
     });
 }
 
-export function fetchLog(): void;
+/**
+ * Fetch log from mongodb.
+ * Parameter from is ISO date string
+ */
+export function fetchLog(from: string, num: number, callback: (logs: Log[]) => void): void {
+    console.log(from);
+    log.find({
+        _id: {
+            $lt: from
+        }
+    },
+        (err, cursor) => {
+            if (err) return console.error(err);
+            cursor.limit(10, (err, result) => {
+                if (err) return console.error(err);
+                callback(result);
+                console.log(result);
+            });
+        });
 
-export function fetchLog(): void {
-
+    log.find(
 }
 
 /**

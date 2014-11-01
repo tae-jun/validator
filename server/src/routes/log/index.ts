@@ -1,6 +1,6 @@
 ﻿import express = require('express');
 import config = require('../../config');
-import log = require('../../mongo/validator/log');
+import log = require('../../mongo/log');
 
 var router = express.Router();
 
@@ -9,11 +9,16 @@ router
         var id = req.params['id'];      // requested id
 
     })
-    .get('/:start/:end', (req, res, next) => {
-        var start = req.params['start'];
-        var end = req.params['end'];
+    .get('/:from/:num', (req, res, next) => {
+        var from = req.params['from'];
+        var num = req.params['num'];
 
-        //log.f
+        console.log(from + '/' + num);
+
+        log.fetchLog(from, num, (logs) => {
+            console.log(logs);
+            res.json(logs);
+        });
     });
 
 export = router;

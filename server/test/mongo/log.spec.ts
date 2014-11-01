@@ -1,4 +1,4 @@
-﻿import log = require('../../src/mongo/validator/log');
+﻿import log = require('../../src/mongo/log');
 
 var testDoc: log.IRecord = {
     isError: false,

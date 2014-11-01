@@ -20,7 +20,10 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="GruntFile.js" />
+    <Content Include="src\index.ex.html" />
     <Content Include="src\index.html" />
+    <Content Include="src\log\template\log-box.tpl.html" />
+    <Content Include="src\log\template\log-container.tpl.html" />
     <Content Include="src\Scss1.css">
       <DependentUpon>Scss1.scss</DependentUpon>
     </Content>
@@ -30,9 +33,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
-    <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\config.ts" />
+    <TypeScriptCompile Include="src\index.ts" />
+    <TypeScriptCompile Include="src\log\controller\logCtrl.ts" />
+    <TypeScriptCompile Include="src\log\directive\logBoxDrt.ts" />
+    <TypeScriptCompile Include="src\log\directive\logDrt.ts" />
+    <TypeScriptCompile Include="src\log\index.ts" />
     <TypeScriptCompile Include="src\main\index.ts" />
-    <TypeScriptCompile Include="src\main\service\logService.ts" />
+    <TypeScriptCompile Include="src\log\service\logService.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />

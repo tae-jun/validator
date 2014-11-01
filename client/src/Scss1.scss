@@ -18,6 +18,23 @@ body {
     left: 60%;
     padding: 10px;
     padding-left: 5px;
+    padding-bottom: 0;
     height: 100%;
     overflow: auto;
+
+    footer {
+        position: relative;
+        width: 100%;
+        background-color: lightgray;
+
+        .btnMore {
+            display: block;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: x-large;
+            cursor: pointer;
+        }
+    }
 }
