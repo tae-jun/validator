@@ -77,6 +77,7 @@ module log {
                     // request to server
                     this.$http.get(config.httpUrl + '/' + from + '/' + num)
                         .success((data: ILog[]) => {
+                            // Process each log
                             data.forEach((v) => {
                                 var log = new Log(v._id);
                                 $.extend(log, v);

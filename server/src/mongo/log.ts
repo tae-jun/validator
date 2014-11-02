@@ -60,6 +60,21 @@ export function fetchLog(from: string, num: number, callback: (logs: Log[]) => v
 }
 
 /**
+ * Fetch error log
+ */
+export function fetchErrLog(callback: (logs: Log[]) => void): void {
+    log.find({
+        $and: [
+            { isError: true },
+            { isChecked: false }]
+    },
+        { sort: [['_id', 'desc']] }).toArray((err, results) => {
+            if (err) return console.error(err);
+            callback(results);
+        });
+}
+
+/**
  * Testing usage only. Wait until app connected to mongodb
  */
 export function waitConn(callback: Function) {

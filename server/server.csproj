@@ -31,6 +31,7 @@
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="src\routes\log\index.ts" />
     <TypeScriptCompile Include="src\routes\static\index.ts" />
+    <TypeScriptCompile Include="src\routes\err\index.ts" />
     <TypeScriptCompile Include="src\serial\logger.ts" />
   </ItemGroup>
   <ItemGroup>

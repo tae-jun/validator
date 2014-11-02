@@ -2,7 +2,7 @@
   font-family: NanumGothic;
   margin: 0; }
 
-.warn-container {
+.err-container {
   position: fixed;
   width: 60%;
   height: 100%;
@@ -31,3 +31,4 @@
       text-align: center;
       font-size: x-large;
       cursor: pointer; }
+

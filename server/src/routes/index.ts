@@ -10,7 +10,7 @@ router
     })
     // set public folder /static
     .use('/static', require('./static/index'))
-    // GET /record
-    .use('/log', require('./log/index'));
+    .use('/log', require('./log/index'))
+    .use('/err', require('./err/index'));
 
 export = router;
