@@ -7,6 +7,15 @@ var ports: SerialPort[] = [];
  * Start logging.
  */
 export function start() {
+
+    function onOpen() {
+        ports.forEach((port) => {
+            port.on('data', (data) => {
+                console.log(new Date().toDateString() + ': ' + data);
+            });
+        });
+    }
+
     // Search every ports available
     serialport.list((err, portInfos) => {
         if (err) return console.dir(err);
@@ -34,12 +43,4 @@ export function start() {
 
         onOpen();
     });
-
-    function onOpen() {
-        ports.forEach((port) => {
-            port.on('data', (data) => {
-                console.log(new Date().toDateString() + ': ' + data);
-            });
-        });
-    }
 }

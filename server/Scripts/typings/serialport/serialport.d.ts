@@ -1,4 +1,6 @@
-﻿declare module 'serialport' {
+﻿//https://github.com/voodootikigod/node-serialport
+
+declare module 'serialport' {
     /**
      * List the ports along with some metadata as well.
      */
