@@ -7,7 +7,7 @@ module log {
     export class ErrLogService {
 
         // log data
-        errLogs: Log[];
+        errLogs: ErrLog[];
         // last updated time
         lastUpdate: Date;
         // latest update time
@@ -39,7 +39,7 @@ module log {
          * You can get specific number of records.
          * If you don't specify number, default is 10
          */
-        fetch(callback?: Function): Log[]{
+        fetch(callback?: Function): ErrLog[] {
             if (callback == undefined)
                 callback = function () { };
 
@@ -67,7 +67,7 @@ module log {
                             this.errLogs.splice(0, this.errLogs.length);
                             // Process each log
                             data.forEach((v) => {
-                                var log = new Log(v._id);
+                                var log = new ErrLog(v._id, this.$http);
                                 $.extend(log, v);
                                 this.errLogs.push(log);
                             });
@@ -95,6 +95,33 @@ module log {
             }
 
             return this.errLogs;
+        }
+
+        removeErrLog(errLog: ErrLog) {
+            var index = this.errLogs.indexOf(errLog);
+            this.errLogs.splice(index, 1);
+        }
+    }
+
+    export class ErrLog extends Log {
+
+        $http: ng.IHttpService;
+
+        constructor(ISOstring, $http) {
+            super(ISOstring);
+
+            this.$http = $http;
+        }
+
+        setChecked() {
+            this.$http.post(config.errHttpUrl + '/' + this._id, {})
+                .success((res) => {
+                    errLogService.removeErrLog(this);
+                })
+                .error((err) => {
+                    console.error('Http action error');
+                    console.error(err);
+                });
         }
     }
 } 

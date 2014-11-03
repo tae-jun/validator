@@ -1,4 +1,4 @@
-﻿var logNum = 1000;
+﻿var logNum = 200;
 
 db.log.drop();
 
@@ -15,7 +15,7 @@ for (var i = 0; i < logNum; i++) {
     var isError;
     var isChecked;
 
-    if (ran(10) == 0) {
+    if (ran(2) == 0) {
         isError = true;
         isChecked = false;
     }

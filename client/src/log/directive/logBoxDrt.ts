@@ -19,21 +19,31 @@ module log {
                 closeable: '='
             },
             templateUrl: config.templateUrl.logBox,
-            link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
-                if (scope['data'].isError) {
+            link: (scope: ILogBoxDrtScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
+                if (scope.data.isChecked && scope.data.isError) {
+                    elem.addClass('alert-warning');
+                    scope.msg = msgErr;
+                }
+                else if (scope.data.isError) {
                     elem.addClass('alert-danger');
-                    scope['data'].msg = msgErr;
+                    scope.msg = msgErr;
                 }
                 else {
                     elem.addClass('alert-success');
-                    scope['data'].msg = msgSuccess;
+                    scope.msg = msgSuccess;
                 }
 
-                scope['onClose'] = (id) => {
-                    console.log(id);
+                scope.onClose = (_id) => {
+                    scope.data.setChecked();
                 };
             }
         };
         return drt;
+    }
+
+    export interface ILogBoxDrtScope extends ng.IScope {
+        msg: string;
+        data: ErrLog;
+        onClose(_id: string): void;
     }
 }  

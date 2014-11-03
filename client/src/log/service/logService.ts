@@ -108,9 +108,16 @@ module log {
 
             return this.logs;
         }
+
+        fetchLogCount(callback: (count: number) => void) {
+            this.$http.get(config.logHttpUrl + '/count')
+                .success((res) => {
+                    console.log(res);
+                });
+        }
     }
 
-    export class Log implements ILog{
+    export class Log implements ILog {
         _id: string;
         isError: boolean;
         isChecked: boolean;

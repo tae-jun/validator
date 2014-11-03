@@ -16,6 +16,11 @@ router
         log.fetchLog(from, num, (logs) => {
             res.json(logs);
         });
+    })
+    .get('/count', (req, res, next) => {
+        log.getLogCount((count) => {
+            res.json({ count: count });
+        });
     });
 
 export = router;

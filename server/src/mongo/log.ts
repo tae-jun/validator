@@ -74,6 +74,24 @@ export function fetchErrLog(callback: (logs: Log[]) => void): void {
         });
 }
 
+export function getLogCount(callback: (count: number) => void): void {
+    log.count((err, result: number) => {
+        if (err) console.error(err);
+        callback(result);
+    });
+}
+
+export function setChecked(_id: string, callback: (numUpdated: any) => void): void {
+    log.update(
+        { _id: _id },
+        { $set: { isChecked: true } },
+        { w: 1 },
+        (err, numUpdated) => {
+            if (err) return console.error(err);
+            callback(numUpdated);
+        });
+}
+
 /**
  * Testing usage only. Wait until app connected to mongodb
  */
