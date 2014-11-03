@@ -1,4 +1,10 @@
 ﻿<div class="alert">
+    <button ng-if="closeable" ng-click="onClose(data._id)"
+            type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+
     <p>
         <strong>{{data.msg}}</strong>
     </p>

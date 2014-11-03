@@ -14,7 +14,8 @@ module log {
             // Isolate scope
             scope: {
                 data: '=',
-                moreLog: '&'
+                moreLog: '&',
+                _onClose: '&onClose'
             },
             templateUrl: config.templateUrl.logContainer,
             link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
@@ -22,8 +23,13 @@ module log {
                 if (attr['data'] == undefined)
                     throw new Error('Log directive: Define data attr');
 
-                scope['moreLog'] = () => {
-                    logService.fetch();
+                if (attr['onClose'])
+                    scope['closeable'] = true;
+                else
+                    scope['closeable'] = false;
+
+                scope['onClose'] = (id) => {
+                    console.log(id);
                 };
             }
         };

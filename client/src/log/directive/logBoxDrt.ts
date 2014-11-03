@@ -15,7 +15,9 @@ module log {
             replace: true,
             restrict: 'E',
             scope: {
-                data: '=data'
+                data: '=',
+                closeable: '=',
+                _onClose: '&onClose'
             },
             templateUrl: config.templateUrl.logBox,
             link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
@@ -27,6 +29,10 @@ module log {
                     elem.addClass('alert-success');
                     scope['data'].msg = msgSuccess;
                 }
+
+                scope['onClose'] = () => {
+                    scope['_onClose']();
+                };
             }
         };
         return drt;

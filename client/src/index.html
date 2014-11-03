@@ -32,10 +32,12 @@
             </p>
         </div>
 
+
+        <!--<log data="data" closeclick="closeClick()"></log>-->
     </div>
 
     <div class="right" ng-controller="logCtrl">
-        <log data="data"></log>
+        <log data="data" more-log="moreLog()" on-close="onClose()"></log>
     </div>
 </body>
 </html>
