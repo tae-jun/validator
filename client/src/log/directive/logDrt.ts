@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../config.ts" />
+/// <reference path="../service/logservice.ts" />
 
 module log {
     import config = configuration.log;
@@ -14,23 +15,14 @@ module log {
             // Isolate scope
             scope: {
                 data: '=',
-                moreLog: '&',
-                _onClose: '&onClose'
+                closeable: '=',
+                moreLog: '&'
             },
             templateUrl: config.templateUrl.logContainer,
             link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
                 // You must define what data is
                 if (attr['data'] == undefined)
                     throw new Error('Log directive: Define data attr');
-
-                if (attr['onClose'])
-                    scope['closeable'] = true;
-                else
-                    scope['closeable'] = false;
-
-                scope['onClose'] = (id) => {
-                    console.log(id);
-                };
             }
         };
 

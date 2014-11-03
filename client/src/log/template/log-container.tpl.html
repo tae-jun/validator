@@ -1,7 +1,7 @@
 ﻿<div class="log-container">
-    <log-box ng-repeat="log in data" data="log" closeable="closeable" on-close="onClose()"></log-box>
+    <log-box ng-repeat="log in data" data="log" closeable="closeable"></log-box>
 
-    <footer>
+    <footer ng-if="!closeable">
         <div class="btnMore" ng-click="moreLog()">
             기록 더 가져오기
         </div>

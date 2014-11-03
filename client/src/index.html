@@ -16,28 +16,18 @@
     <script src="static/<%= grunt.config.get('pkg.name') %>.js"></script>
 </head>
 <body ng-app="app">
-    <div class="err-container">
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-
-            <p>
-                <strong>경고!</strong>
-            </p>
-
-            <p>
-                2014년 08월 10일
-            </p>
-        </div>
-
-
-        <!--<log data="data" closeclick="closeClick()"></log>-->
+    <div class="left" ng-controller="errCtrl">
+        <h3>
+            확인하지 않은 오류들 ({{data.length}})
+        </h3>
+        <log data="data" more-log="moreLog()" closeable="true"></log>
     </div>
 
     <div class="right" ng-controller="logCtrl">
-        <log data="data" more-log="moreLog()" on-close="onClose()"></log>
+        <h3>
+            기록 ({{data.length}})
+        </h3>
+        <log data="data" more-log="moreLog()"></log>
     </div>
 </body>
 </html>

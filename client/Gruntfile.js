@@ -1,4 +1,4 @@
-
+/// <vs />
 module.exports = function (grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-concat');

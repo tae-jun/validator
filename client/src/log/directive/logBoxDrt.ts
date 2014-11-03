@@ -16,8 +16,7 @@ module log {
             restrict: 'E',
             scope: {
                 data: '=',
-                closeable: '=',
-                _onClose: '&onClose'
+                closeable: '='
             },
             templateUrl: config.templateUrl.logBox,
             link: (scope: ng.IScope, elem: ng.IAugmentedJQuery, attr: ng.IAttributes) => {
@@ -30,8 +29,8 @@ module log {
                     scope['data'].msg = msgSuccess;
                 }
 
-                scope['onClose'] = () => {
-                    scope['_onClose']();
+                scope['onClose'] = (id) => {
+                    console.log(id);
                 };
             }
         };

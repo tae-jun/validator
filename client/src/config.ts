@@ -1,6 +1,7 @@
 ﻿module configuration {
     export var log = {
-        httpUrl: 'http://localhost/log',
+        errHttpUrl: 'http://localhost/err',
+        logHttpUrl: 'http://localhost/log',
         updateDuration: 500,
         templateUrl: {
             logBox: 'static/log-box.tpl.html',

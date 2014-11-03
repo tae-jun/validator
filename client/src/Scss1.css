@@ -2,7 +2,7 @@
   font-family: NanumGothic;
   margin: 0; }
 
-.err-container {
+.left {
   position: fixed;
   width: 60%;
   height: 100%;
@@ -10,7 +10,7 @@
   padding-right: 5px;
   overflow: auto; }
 
-.log-container {
+.right {
   position: fixed;
   width: 40%;
   left: 60%;
@@ -19,16 +19,16 @@
   padding-bottom: 0;
   height: 100%;
   overflow: auto; }
-  .log-container footer {
-    position: relative;
-    width: 100%;
-    background-color: lightgray; }
-    .log-container footer .btnMore {
-      display: block;
-      width: 100%;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      text-align: center;
-      font-size: x-large;
-      cursor: pointer; }
 
+.log-container footer {
+  position: relative;
+  width: 100%;
+  background-color: lightgray; }
+  .log-container footer .btnMore {
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer; }

@@ -1,4 +1,5 @@
-﻿module log {
+﻿/// <reference path="../service/logservice.ts" />
+module log {
     export class LogCtrl {
 
         constructor($scope: ILogScope, logService: LogService) {
@@ -6,11 +7,6 @@
 
             $scope.moreLog = () => {
                 logService.fetch();
-            };
-            var i = 0;
-            $scope.onClose = (id) => {
-                i++;
-                console.log('close ' + i + ': ' + id);
             };
         }
     }

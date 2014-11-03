@@ -1,12 +1,13 @@
-﻿/// <reference path="../../config.ts" />
+﻿/// <reference path="logservice.ts" />
+/// <reference path="../../config.ts" />
 
 module log {
     import config = configuration.log;
 
-    export class LogService {
+    export class ErrLogService {
 
         // log data
-        logs: Log[];
+        errLogs: Log[];
         // last updated time
         lastUpdate: Date;
         // latest update time
@@ -22,7 +23,7 @@ module log {
             this.$http = $http;
 
             // set last updated time to long ago, because this needs update
-            this.logs = [];
+            this.errLogs = [];
             this.lastUpdate = new Date(1994, 2, 4);
             this.updateDuration = config.updateDuration;
             this.isFetching = false;
@@ -30,7 +31,7 @@ module log {
         }
 
         get(): Log[] {
-            return this.logs;
+            return this.errLogs;
         }
 
         /**
@@ -38,24 +39,9 @@ module log {
          * You can get specific number of records.
          * If you don't specify number, default is 10
          */
-        fetch(num?: number)
-        fetch(callback?: Function)
-        fetch(num: number, callback?: Function)
-        fetch(num_callback: any, _callback?: Function): Log[] {
-            var num: number = 10;
-            var callback: Function = function () { };
-
-            // recognize parameters
-            if (typeof num_callback == 'number') {
-                if (num_callback > 0)
-                    num = num_callback;
-            }
-            else if (typeof num_callback == 'function') {
-                callback = num_callback;
-            }
-
-            if (typeof _callback == 'function')
-                callback = _callback;
+        fetch(callback?: Function): Log[]{
+            if (callback == undefined)
+                callback = function () { };
 
             // Push callback function into callbacks
             this.callbacks.push(callback);
@@ -70,26 +56,28 @@ module log {
 
                     // set from ISO string
                     var from: string;
-                    if (this.logs.length == 0)
+                    if (this.errLogs.length == 0)
                         from = new Date().toISOString();
                     else
-                        from = this.logs[this.logs.length - 1]._id;
+                        from = this.errLogs[this.errLogs.length - 1]._id;
                     // request to server
-                    this.$http.get(config.logHttpUrl + '/' + from + '/' + num)
+                    this.$http.get(config.errHttpUrl)
                         .success((data: ILog[]) => {
+                            // Clean error log array
+                            this.errLogs.splice(0, this.errLogs.length);
                             // Process each log
                             data.forEach((v) => {
                                 var log = new Log(v._id);
                                 $.extend(log, v);
-                                this.logs.push(log);
+                                this.errLogs.push(log);
                             });
 
                             while (this.callbacks.length)
-                                this.callbacks.pop()(this.logs);
+                                this.callbacks.pop()(this.errLogs);
 
                             this.lastUpdate = new Date();
 
-                            console.log('log fetched at ' + this.lastUpdate);
+                            console.log('error log fetched at ' + this.lastUpdate);
                         })
                         .error((err) => {
                             console.error('http action error');
@@ -102,29 +90,11 @@ module log {
                 // Data is latest data, so just call callback functions
                 else {
                     while (this.callbacks.length)
-                        this.callbacks.pop()(this.logs);
+                        this.callbacks.pop()(this.errLogs);
                 }
             }
 
-            return this.logs;
+            return this.errLogs;
         }
-    }
-
-    export class Log implements ILog{
-        _id: string;
-        isError: boolean;
-        isChecked: boolean;
-
-        date: Date;
-
-        constructor(ISOstring: string) {
-            this.date = new Date(ISOstring);
-        }
-    }
-
-    export interface ILog {
-        _id?: string;
-        isError?: boolean;
-        isChecked?: boolean;
     }
 } 

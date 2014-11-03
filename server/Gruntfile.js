@@ -1,3 +1,4 @@
+/// <vs />
 /*global module:false*/
 module.exports = function (grunt) {
 
