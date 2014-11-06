@@ -68,7 +68,7 @@ export function fetchErrLog(callback: (logs: Log[]) => void): void {
             { isError: true },
             { isChecked: false }]
     },
-        { sort: [['_id', 'desc']] }).toArray((err, results) => {
+        { sort: [['_id', 'asc']] }).toArray((err, results) => {
             if (err) return console.error(err);
             callback(results);
         });

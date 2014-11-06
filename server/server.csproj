@@ -40,6 +40,7 @@
     <Content Include="mongo_shell\dateQuery.js" />
     <Content Include="mongo_shell\dump.js" />
     <Content Include="package.json" />
+    <Content Include="src\serial\순서도.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\mongo\" />
