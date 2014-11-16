@@ -1,15 +1,17 @@
 ﻿import logger = require('./logger');
+import configAll = require('../config');
+import config = configAll.serial;
 
-function onData(data) {
+logger.start((ports) => {
+    console.log(ports);
 
-} 
-
-//logger.start((ports) => {
-//    console.log(ports);
-//});
-
-var a = [7, 6, 58, 3];
-a['name'] = 'aaaa';
-for (var k in a) {
-    console.log(a[k]);
-}
+    ports.forEach((port) => {
+        port.on('data', (data: Buffer) => {
+            console.log(data.toJSON());
+            if (data.toJSON() == config.successMsg.toString())
+                console.log('success');
+            else if (data.toJSON() == config.errorMsg.toString())
+                console.log('error');
+        });
+    });
+});

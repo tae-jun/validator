@@ -37,6 +37,8 @@ declare module 'serialport' {
         on(evnetName: string, listener: Function): EventEmitter;
     }
 
+    var parsers: { raw; readline: (delimiter: string) => void; byteLength: Function };
+
     interface ISerialPortOption {
         baudRate?: number;
         dataBits?: number;

@@ -13,8 +13,10 @@
     }
 
     export var serial = {
-        testMsg: new Buffer([0, 0, 0]),
-        correctMsg: '',
+        msgByteLength: 4,
+        validateMsg: [35, 36],
+        successMsg: [35, 36, 71, 38],
+        errorMsg: [35, 36, 70, 38],
         validateTimeout: 3000
     }
 }

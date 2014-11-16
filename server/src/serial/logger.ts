@@ -26,7 +26,9 @@ export function start(callback: (ports: SerialPort[]) => void): void {
                 count++;
                 if (count >= portInfos.length)
                     callback(ports);
-            });
+            }, {
+                    parser: serialport.parsers.byteLength(config.msgByteLength)
+                });
         });
     });
 }
@@ -50,12 +52,6 @@ class Port extends SerialPort {
         // If can not get return message in time, close this port
         var isGetRtnMsg = false;
 
-        // Send test message.
-        this.write(config.testMsg, (err) => {
-            if (err) return console.error(err);
-        });
-
-        // Set receiving timeout
         setTimeout(() => {
             if (!isGetRtnMsg) {
                 console.log('Validating timeout. Close "' + this.path + '"');
@@ -65,17 +61,16 @@ class Port extends SerialPort {
         }, config.validateTimeout);
 
         // Check return message is correct
-        this.once('data', (data) => {
+        this.once('data', (data: Buffer) => {
             // Got message
             isGetRtnMsg = true;
             // This is correct port
-            if (data == config.correctMsg) {
+            if (data.slice(0, 2).toJSON() == config.validateMsg.toString()) {
                 callback(true);
             }
             // If this is not correct port, close this
             else {
-                console.log('"' + this.path + '" is not port I want');
-                console.log('This port will be closed');
+                console.log('Got incorrect message. Close "' + this.path + '"');
                 this.close();
                 callback(false);
             }
