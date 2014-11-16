@@ -9,7 +9,8 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 
 // my modules
-import config = require('./config');
+import configAll = require('./config');
+import config = configAll.web;
 import mongo = require('./mongo/mongo');
 
 var app = express();

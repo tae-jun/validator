@@ -1,6 +1,8 @@
 ﻿//https://github.com/voodootikigod/node-serialport
 
 declare module 'serialport' {
+    import events = require('events');
+    import EventEmitter = events.EventEmitter;
     /**
      * List the ports along with some metadata as well.
      */
@@ -9,7 +11,9 @@ declare module 'serialport' {
     /**
      * Create a new serial port on path
      */
-    class SerialPort {
+    class SerialPort extends EventEmitter {
+        path: string;
+
         constructor(path: string, options?: ISerialPortOption, openImmediately?: boolean, callback?: (err) => void);
         /**
          * Opens a connection to the given serial port.
@@ -26,11 +30,11 @@ declare module 'serialport' {
         /**
          * set event listener
          */
-        on(evnetName: 'open', listener: (data: any) => void): void;
-        on(evnetName: 'data', listener: (data: any) => void): void;
-        on(evnetName: 'close', listener: (data: any) => void): void;
-        on(evnetName: 'error', listener: (data: any) => void): void;
-        on(evnetName: string, listener: (data: any) => void): void;
+        on(evnetName: 'open', listener: Function): EventEmitter;
+        on(evnetName: 'data', listener: Function): EventEmitter;
+        on(evnetName: 'close', listener: Function): EventEmitter;
+        on(evnetName: 'error', listener: Function): EventEmitter;
+        on(evnetName: string, listener: Function): EventEmitter;
     }
 
     interface ISerialPortOption {
@@ -38,16 +42,16 @@ declare module 'serialport' {
         dataBits?: number;
         stopBits?: number;
         parity?: string;
-        //rtscts
-        //xon
-        //xoff
-        //xany
-        //flowControl
+        rtscts?: any;
+        xon?: any;
+        xoff?: any;
+        xany?: any;
+        flowControl?: any;
         bufferSize?: number;
-        //parser
-        //encoding
-        //dataCallback
-        //disconnectedCallback
+        parser?: any;
+        encoding?: any;
+        dataCallback?: any;
+        disconnectedCallback?: any;
     }
 
     interface IPort {

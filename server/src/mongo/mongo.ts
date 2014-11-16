@@ -1,7 +1,8 @@
 ﻿/// <reference path="../../scripts/typings/mongodb/mongodb.d.ts" />
 
 import mongodb = require('mongodb');
-import config = require('../config');
+import configAll = require('../config');
+import config = configAll.mongo;
 
 var MongoClient = mongodb.MongoClient;
 var callbacks: Function[] = [];     // after connect

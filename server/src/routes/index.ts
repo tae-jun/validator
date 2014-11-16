@@ -1,5 +1,6 @@
 ﻿import express = require('express');
-import config = require('../config');
+import configAll = require('../config');
+import config = configAll.web;
 
 var router = express.Router();
 
