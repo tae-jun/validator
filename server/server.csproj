@@ -39,7 +39,6 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="GruntFile.js" />
-    <Content Include="mongo_shell\dateQuery.js" />
     <Content Include="mongo_shell\dump.js" />
     <Content Include="package.json" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿var logNum = 200;
+﻿use validator;
+
+var logNum = 200;
 
 db.log.drop();
 

@@ -7,7 +7,9 @@ var modules = [
 ];
 
 angular.module('app', modules)
-    .run(($window: ng.IWindowService, logService: log.LogService) => {
-        $window['logService'] = logService;
+    .run(($window, logService: log.LogService, errLogService: log.ErrLogService) => {
+        $window.logService = logService;
+        $window.errService = errLogService;
+
         logService.fetch();
     });
