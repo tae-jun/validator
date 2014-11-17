@@ -7,7 +7,8 @@
     export var mongo = {
         mongodbUrl: 'mongodb://localhost:27017/',
         dbList: [
-            'validator'
+            'validator',
+            //'serverLog'
         ],
         dbConnectTimeout: 5000
     }

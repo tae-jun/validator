@@ -9,38 +9,33 @@ var log: mongodb.Collection;
 var callbacks: Function[] = [];
 var isConnected: boolean = false;
 
-export class Log implements ILog {
+export class Doc implements IDoc {
     _id: string;        // ISO
-    state: string;
     isError: boolean;    // if true, error
     isChecked: boolean;
 
-    constructor() {
+    constructor(isError: boolean) {
         this._id = new Date().toISOString();
+        this.isError = isError;
+
+        if (isError)
+            this.isChecked = false;
     }
 }
 
-export interface ILog {
+export interface IDoc {
     _id: string;            //ISO date string
     isError?: boolean;      // if true, error
     isChecked?: boolean;
-    state?: string;
 }
 
 /**
  * Insert one record into log collection
  */
-export function insert(data: ILog, callback?: (result: any) => void) {
-    if (data.state == undefined)
-        data.state = 'state undefined';
+export function insert(isError: boolean, callback?: (result: any) => void) {
+    var doc = new Doc(isError);
 
-    var record = new Log();
-    extend(record, data);
-
-    if (record.isError)
-        record.isChecked = false;
-
-    log.insert(record, (err, result) => {
+    log.insert(doc, { w: 1 }, (err, result) => {
         if (err) return console.dir(err);
 
         if (callback)
@@ -52,7 +47,7 @@ export function insert(data: ILog, callback?: (result: any) => void) {
  * Fetch log from mongodb.
  * Parameter from is ISO date string
  */
-export function fetchLog(from: string, num: number, callback: (logs: Log[]) => void): void {
+export function fetchLog(from: string, num: number, callback: (logs: Doc[]) => void): void {
     log.find({ _id: { $lt: from } }, { limit: num, sort: [['_id', 'desc']] }).toArray((err, results) => {
         if (err) return console.error(err);
         callback(results);
@@ -62,7 +57,7 @@ export function fetchLog(from: string, num: number, callback: (logs: Log[]) => v
 /**
  * Fetch error log
  */
-export function fetchErrLog(callback: (logs: Log[]) => void): void {
+export function fetchErrLog(callback: (logs: Doc[]) => void): void {
     log.find({
         $and: [
             { isError: true },
@@ -111,7 +106,7 @@ mongo.getDb('validator', (_db) => {
         log = coll;
         // connected
         isConnected = true;
-        console.log('Ready to use collection LOG');
+        console.log('Collection "log" connected');
         // call callback functions
         while (callbacks.length)
             callbacks.shift()();

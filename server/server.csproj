@@ -32,8 +32,9 @@
     <TypeScriptCompile Include="src\routes\log\index.ts" />
     <TypeScriptCompile Include="src\routes\static\index.ts" />
     <TypeScriptCompile Include="src\routes\err\index.ts" />
+    <TypeScriptCompile Include="src\serial\getPorts.ts" />
     <TypeScriptCompile Include="src\serial\logger.ts" />
-    <TypeScriptCompile Include="src\serial\onData.ts" />
+    <TypeScriptCompile Include="test\process.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
