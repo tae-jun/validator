@@ -12,6 +12,8 @@ export function start(): void {
     getPorts((ports) => {
         ports.forEach((port) => {
             console.log(port.path);
+            // Light on
+            port.write(new Buffer(config.lightOnMsg));
             // Set on data listener
             port.on('data', (data: Buffer) => {
                 // Print received message

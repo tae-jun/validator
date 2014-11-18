@@ -18,6 +18,7 @@
         validateMsg: [35, 36],
         successMsg: [35, 36, 71, 38],
         errorMsg: [35, 36, 70, 38],
+        lightOnMsg: [35, 36, 79, 38],
         validateTimeout: 3000
     }
 }
