@@ -1,7 +1,7 @@
 {
     "name": "client",
     "version": "0.0.0",
-    "license": "MIT",
+    "license": "none",
     "private": true,
     "ignore": [
         "**/.*",
