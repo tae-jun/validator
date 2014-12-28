@@ -3,7 +3,8 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
 
     <title><%= grunt.config.get('pkg.name') %></title>
@@ -12,6 +13,7 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- angular -->
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/hammerjs/hammer.js"></script>
@@ -29,14 +31,7 @@
     <link rel="stylesheet" href="static/<%= grunt.config.get('pkg.name') %>.css" />
     <script src="static/<%= grunt.config.get('pkg.name') %>.js"></script>
 </head>
-<body ng-app="app" ng-controller="googleMapsCtrl">
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" class="ui-google-map">
-        <ui-gmap-marker coords="marker.coords"
-                        options="marker.options"
-                        events="marker.events"
-                        idkey="marker.id">
-
-        </ui-gmap-marker>
-    </ui-gmap-google-map>
+<body ng-app="app">
+    <div ng-view></div>
 </body>
 </html>

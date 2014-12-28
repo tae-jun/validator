@@ -1,0 +1,13 @@
+﻿<div class="left" ng-controller="errCtrl">
+    <h3>
+        확인하지 않은 오류들 ({{data.length}})
+    </h3>
+    <log data="data" more-log="moreLog()" closeable="true"></log>
+</div>
+
+<div class="right" ng-controller="logCtrl">
+    <h3>
+        기록 ({{data.length}})
+    </h3>
+    <log data="data" more-log="moreLog()"></log>
+</div>

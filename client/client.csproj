@@ -403,6 +403,8 @@
     <Content Include="bower_components\angular-material\themes\red-theme.css" />
     <Content Include="bower_components\angular-material\themes\teal-theme.css" />
     <Content Include="bower_components\angular-material\themes\yellow-theme.css" />
+    <Content Include="bower_components\angular-route\angular-route.js" />
+    <Content Include="bower_components\angular-route\angular-route.min.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
@@ -530,16 +532,19 @@
     <Content Include="src\google-maps\styles\googleMaps.css">
       <DependentUpon>googleMaps.scss</DependentUpon>
     </Content>
+    <Content Include="src\google-maps\templates\googleMaps.tpl.html" />
     <Content Include="src\index.html" />
     <Content Include="src\index.org.html" />
     <Content Include="src\log\template\log-box.tpl.html" />
     <Content Include="src\log\template\log-container.tpl.html" />
+    <Content Include="src\log\template\log.tpl.html" />
     <Content Include="src\Scss1.css">
       <DependentUpon>Scss1.scss</DependentUpon>
     </Content>
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\typings\angularjs\angular-route.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="src\config.ts" />
@@ -859,6 +864,11 @@
     <Content Include="bower_components\hammerjs\LICENSE.md" />
     <Content Include="bower_components\hammerjs\package.json" />
     <Content Include="bower_components\hammerjs\README.md" />
+    <Content Include="bower_components\angular-route\.bower.json" />
+    <Content Include="bower_components\angular-route\angular-route.min.js.map" />
+    <Content Include="bower_components\angular-route\bower.json" />
+    <Content Include="bower_components\angular-route\package.json" />
+    <Content Include="bower_components\angular-route\README.md" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
