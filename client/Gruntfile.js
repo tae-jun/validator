@@ -52,18 +52,6 @@ module.exports = function (grunt) {
             tsout: {
                 src: '<%= src.tsout %>',
                 dest: '<%= dist %>/<%= pkg.name %>.js'
-            },
-            lib: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'bower_components',
-                        src: ['*/dist/**/*.css', '*/dist/**/*.js', '!**/*.min.*', 'angular/angular.js'],
-                        dest: '<%= dist %>',
-                        flatten: true,
-                        filter: 'isFile'
-                    }
-                ]
             }
         },
         watch: {

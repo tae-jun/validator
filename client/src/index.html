@@ -3,31 +3,40 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+
     <title><%= grunt.config.get('pkg.name') %></title>
 
-    <!-- libs -->
-    <script src="static/jquery.js"></script>
-    <script src="static/angular.js"></script>
-    <link rel="stylesheet" href="static/bootstrap.css" />
-    <script src="static/bootstrap.js"></script>
+    <!-- jquery -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- angular -->
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/hammerjs/hammer.js"></script>
+    <script src="/bower_components/angular-material/angular-material.js"></script>
+    <!-- bootstrap -->
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Angular Google Maps -->
+    <script src="/bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="/bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <!-- Google Maps -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY2o1yet66OuduC8KeF0elWhvXP3zdYk8&sensor=false"></script>
 
     <!-- my -->
     <link rel="stylesheet" href="static/<%= grunt.config.get('pkg.name') %>.css" />
     <script src="static/<%= grunt.config.get('pkg.name') %>.js"></script>
 </head>
-<body ng-app="app">
-    <div class="left" ng-controller="errCtrl">
-        <h3>
-            확인하지 않은 오류들 ({{data.length}})
-        </h3>
-        <log data="data" more-log="moreLog()" closeable="true"></log>
-    </div>
+<body ng-app="app" ng-controller="googleMapsCtrl">
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" class="ui-google-map">
+        <ui-gmap-marker coords="marker.coords"
+                        options="marker.options"
+                        events="marker.events"
+                        idkey="marker.id">
 
-    <div class="right" ng-controller="logCtrl">
-        <h3>
-            기록 ({{data.length}})
-        </h3>
-        <log data="data" more-log="moreLog()"></log>
-    </div>
+        </ui-gmap-marker>
+    </ui-gmap-google-map>
 </body>
 </html>

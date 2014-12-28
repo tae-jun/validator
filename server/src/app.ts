@@ -3,7 +3,7 @@
 
 // node modules
 import express = require('express');
-var path = require('path');
+import path = require('path');
 var favicon = require('serve-favicon');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -19,6 +19,7 @@ var app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/bower_components', express.static(path.join(__dirname, '../../client/bower_components')));
 
 // routes
 app.use('/', require('./routes/index'));

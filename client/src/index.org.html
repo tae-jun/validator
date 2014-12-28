@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title><%= grunt.config.get('pkg.name') %></title>
+
+    <!-- libs -->
+    <script src="static/jquery.js"></script>
+    <script src="static/angular.js"></script>
+    <link rel="stylesheet" href="static/bootstrap.css" />
+    <script src="static/bootstrap.js"></script>
+    <!-- Google Maps -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY2o1yet66OuduC8KeF0elWhvXP3zdYk8&sensor=false"></script>
+    <!-- Angular Google Maps -->
+    <script src="static/angular-google-maps.js"></script>
+
+    <!-- my -->
+    <link rel="stylesheet" href="static/<%= grunt.config.get('pkg.name') %>.css" />
+    <script src="static/<%= grunt.config.get('pkg.name') %>.js"></script>
+</head>
+<body ng-app="app">
+    <div class="left" ng-controller="errCtrl">
+        <h3>
+            확인하지 않은 오류들 ({{data.length}})
+        </h3>
+        <log data="data" more-log="moreLog()" closeable="true"></log>
+    </div>
+
+    <div class="right" ng-controller="logCtrl">
+        <h3>
+            기록 ({{data.length}})
+        </h3>
+        <log data="data" more-log="moreLog()"></log>
+    </div>
+</body>
+</html>

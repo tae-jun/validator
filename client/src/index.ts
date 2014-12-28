@@ -3,7 +3,9 @@
 
 var modules = [
     'main',
-    'log'
+    'log',
+    'uiGmapgoogle-maps',
+    'googleMaps'
 ];
 
 angular.module('app', modules)
