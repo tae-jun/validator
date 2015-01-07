@@ -15,12 +15,12 @@ angular.module('app', modules)
     .config(($routeProvider: ng.route.IRouteProvider) => {
         $routeProvider
             .when('/maps', {
-                templateUrl: 'static/googleMaps.tpl.html',
+                templateUrl: 'tpl/googleMaps.tpl.html',
                 controller: 'googleMapsCtrl'
             })
 
             .when('/log', {
-                templateUrl: 'static/log.tpl.html'
+                templateUrl: 'tpl/log.tpl.html'
             })
 
             .otherwise({

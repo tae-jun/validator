@@ -1,5 +1,8 @@
 ﻿/// <reference path="../scripts/typings/express/express.d.ts" />
 /// <reference path="../scripts/typings/node/node.d.ts" />
+/// <reference path="../scripts/typings/serialport/serialport.d.ts" />
+/// <reference path="../scripts/typings/mongodb/mongodb.d.ts" />
+/// <reference path="../scripts/typings/extend/extend.d.ts" />
 
 // node modules
 import express = require('express');

@@ -19,7 +19,6 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\typings\extend\extend.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\mongodb\mongodb-tests.ts" />
     <TypeScriptCompile Include="Scripts\typings\mongodb\mongodb.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\serialport\serialport.d.ts" />
     <TypeScriptCompile Include="src\app.ts" />
@@ -30,7 +29,7 @@
     <TypeScriptCompile Include="Scripts\typings\express\express.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\node\node.d.ts" />
     <TypeScriptCompile Include="src\routes\log\index.ts" />
-    <TypeScriptCompile Include="src\routes\static\index.ts" />
+    <TypeScriptCompile Include="src\routes\tpl\index.ts" />
     <TypeScriptCompile Include="src\routes\err\index.ts" />
     <TypeScriptCompile Include="src\serial\getPorts.ts" />
     <TypeScriptCompile Include="src\serial\logger.ts" />
